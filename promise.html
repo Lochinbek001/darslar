@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ob-havo</title>
+
+
+	<style>
+
+		body {
+
+			display: flex;
+			box-sizing: border-box;
+			justify-content: space-between;
+			background-image: url('ob-havo.jpg');
+		}
+
+		#bosh {
+			margin-top: 250px;
+			margin-left: 1200px;
+			text-align: center;
+			opacity: 0.8;
+			border-radius: 25px;
+			font-family: sans-serif;
+			color: black;
+			align-items: center;
+			width: 500px;
+			height: 500px;
+			background: rgba(299, 299, 299, 0.4);
+			text-shadow: 1px 1px 5px #707070;
+		}
+		#shaxar {
+			text-align: center;
+			font-size: 24px;
+			width: 100%;
+			height: 35px;
+			border-radius: 4px;
+			margin: 0px;
+			padding: 0px;
+			border-color: white;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div id="bosh">
+		<input id="shaxar" type="text" placeholder="Enter Your City Name...">
+		<h1 id="heading"></h1>
+		<img id="img">
+		<h3 id="degree"></h3>
+		<h3 id="namlik"></h3>
+		<h3 id="bosim"></h3>
+		<h3 id="shamol"></h3>
+	</div>
+
+	
+<script>
+	let api = `https://api.openweathermap.org/data/2.5/weather?q=fargona&appid=4ec6fb29c1fa7da5c5edf2ddf2adc4b3`
+			let response = fetch(api)
+			response.then( res => res.json() )
+					.then( data=> {
+					shamol.textContent = 'Shamol: ' + data.wind.speed + 'm/s'
+					bosim.textContent = 'Bosim: ' + data.main.pressure + ' Pa'
+					namlik.textContent = 'Namlik: ' + data.main.humidity + '%'
+					img.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+					heading.textContent = 'Shaxar: ' + data.name
+					degree.textContent = 'Harorat: ' + (data.main.temp -273 | 0 )+ 'C'
+					} )
+	
+	shaxar.onkeyup = (event) => {
+		if(event.keyCode == 13) {
+			let api = `https://api.openweathermap.org/data/2.5/weather?q=${shaxar.value}&appid=4ec6fb29c1fa7da5c5edf2ddf2adc4b3`
+			let response = fetch(api)
+			response.then( res => res.json() )
+					.then( data=> {
+					shamol.textContent = 'Shamol: ' + data.wind.speed + 'm/s'
+					bosim.textContent = 'Bosim: ' + data.main.pressure + ' Pa'
+					namlik.textContent = 'Namlik: ' + data.main.humidity + '%'
+					img.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+					heading.textContent = 'Shaxar: ' + data.name
+					degree.textContent = 'Harorat: ' + (data.main.temp -273 | 0 )+ 'C'
+					} )
+		}
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Weather Widget</title> -->
+	<!-- Style CSS -->
+<!-- 	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body> -->
+	<!-- Background Image -->
+<!-- 	<div class="bg"></div>
+
+	<div class="container"> -->
+		<!-- Weather Widget -->
+<!-- 		<div class="widget">
+			<div class="left">
+				<img src="" class="icon">
+				<h5 class="weather-status">Partly Cloud</h5>
+			</div>
+			<div class="right">
+				<h5 class="city">Singapore</h5>
+				<h5 class="degree">25&#176;c</h5>
+			</div>
+			<div class="bottom">
+				<div>
+					Wind Speed <span>22 kmph</span>
+				</div>
+				<div>
+					Cloud Cover <span>22%</span>
+				</div>
+				<div>
+					Pressure <span>1010 mb</span>
+				</div>
+			</div>
+		</div> -->
+		<!-- ./End of weather widget -->
+<!-- 	</div>
+</body>
+</html>
+ -->
